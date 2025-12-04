@@ -1,7 +1,5 @@
 
 from copy import deepcopy
-from tabnanny import check
-from turtle import right
 from logic.biconditional import Biconditional
 from logic.implication import Implication
 from logic.negation import Not
@@ -27,7 +25,7 @@ def check_proven(knowledge, query):
     elif is_in(knowledge,Not(query)):
         return False
     else:
-        None
+       return None
 
 def get_inferrable_knowledge(knowledge):
     """
@@ -67,7 +65,7 @@ def forward_search(knowledge, query):
         - None: if the query can't be proven or disproven
     """
 
-    # Best practice: copy the knowledge base so we don't accidentally modify an input parameter.
+    # copying the knowledge base so we don't accidentally modify an input parameter.
     knowledge_base = deepcopy(knowledge)
 
     while True:
@@ -80,7 +78,6 @@ def forward_search(knowledge, query):
         inferred_sentences = get_inferrable_knowledge(knowledge_base)
 
         # 3. If no new knowledge can be inferred, we are stuck.
-        # This means the query cannot be proven or disproven with this algorithm.
         if not inferred_sentences:
             return None
 
